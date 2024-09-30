@@ -1,0 +1,6 @@
+<%= form_with model: @post do |form| %>
+    <%= form.text_field :title, class: 'form-control', placeholder: 'Título' %>
+    <%= form.text_area :content, class: 'form-control', placeholder: 'Contenido' %>
+
+    <%= form.submit 'Guardar', class: 'btn btn-primary' %>
+<% end %>
