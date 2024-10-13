@@ -1,11 +1,12 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
+  before_action :set_post, only: [:show, :edit]
+  authorize_resource
   def index
     @posts = Post.all
   end
 
   def show
-    @post = Post.find params['id']
   end
 
   def new
@@ -22,7 +23,6 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post = Post.find params['id']
   end
 
   def update
@@ -43,5 +43,9 @@ class PostsController < ApplicationController
   private
   def post_params
     params.require(:post).permit(:title, :content, :body)
+  end
+
+  def set_post
+    @post = Post.find params['id']
   end
 end
